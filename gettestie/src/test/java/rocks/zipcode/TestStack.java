@@ -242,7 +242,79 @@ public class TestStack {
         //assertThat(newTreeSet.headSet("diamonds"), is("clubs"));
 
         //test tailset
-        assertThat(newTreeSet.tailSet("hearts"), is("spades"));
+        //assertThat(newTreeSet.tailSet("hearts"), is("spades"));
+    }
+
+    @org.junit.Test
+    public void testStack(){
+        Stack<String> stack = new Stack<>();
+        stack.push("hello");
+        stack.push("world");
+
+        //test push
+        assertThat(stack.size(), is(2));
+
+        //test pop
+        assertThat(stack.pop(), is("world"));
+
+        //test peek
+        assertThat(stack.peek(), is("hello"));
+
+        //test isEmpty
+        assertThat(stack.isEmpty(),is(false));
+    }
+
+    @org.junit.Test
+    public void testIterator(){
+        ArrayList<Integer> ints = new ArrayList<>();
+        ints.add(1);
+        ints.add(7);
+        ints.add(10);
+        Iterator<Integer> integerIterator = ints.iterator();
+
+        //test iterate
+        while(integerIterator.hasNext()){
+            System.out.println(integerIterator.next());
+        }
+
+        //test remove
+        while(integerIterator.hasNext()) {
+            int next = integerIterator.next();
+            if (next < 10) {
+                integerIterator.remove();
+                assertThat(integerIterator.next(), is(10));
+            }
+        }
+
+    }
+
+    @org.junit.Test
+    public void testComparator(){
+        ArrayList<Person> people = new ArrayList<>();
+        Person person1 = new Person("mike", 1985);
+        Person person2 = new Person("nikki", 1986);
+        Person person3 = new Person("john", 1874);
+
+        //test compare by age
+        Comparator.comparingInt(Person::getYearOfBirth);
+        System.out.println(people);
+
+    }
+
+    @org.junit.Test
+    public void testPriorityQue(){
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        pq.add(4);
+        pq.add(6);
+        pq.add(8);
+        pq.add(11);
+
+        //test remove
+        pq.remove(4);
+        assertThat(pq.size(), is(3));
+
+        //test peek
+        assertThat(pq.peek(), is(6));
     }
 
 
